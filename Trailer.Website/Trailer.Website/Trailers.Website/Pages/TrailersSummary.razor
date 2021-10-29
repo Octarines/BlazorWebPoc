@@ -1,0 +1,41 @@
+﻿@page "/trailers"
+
+<PageTitle>Tailers Summary</PageTitle>
+
+<h1>Trailers</h1>
+
+<p>All of the trailers currently in the depot</p>
+
+@if (Trailers == null)
+{
+    <p><em>Loading trailers...</em></p>
+}
+else
+{
+    @if(SelectedTrailer != null)
+    {
+        <p>Selected Trailer: @SelectedTrailer.Name</p>
+        <p>New Location: <input @bind="NewLocation"/>
+        Priority: <input type="number" @bind="MovePriority"/>
+        <button @onclick="MoveSelectedTrailer">Queue Move</button></p>
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Current Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var trailer in Trailers)
+            {
+                <tr @onclick="@(e => SelectedTrailer = trailer)">
+                    <td>@trailer.Id</td>
+                    <td>@trailer.Name</td>
+                    <td>@trailer.Location</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

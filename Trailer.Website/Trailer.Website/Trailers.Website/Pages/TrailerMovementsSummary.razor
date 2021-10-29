@@ -1,0 +1,36 @@
+﻿@page "/trailermovement"
+
+<PageTitle>Tailer Movements Summary</PageTitle>
+
+<h1>Trailer Movements</h1>
+
+<p>Pending Trailer Movements</p>
+
+@if (TrailerMovements == null)
+{
+    <p><em>Loading trailer movements...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Trailer Id</th>
+                <th>New Location</th>
+                <th>Priority</th>
+                <th>Complete?</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movement in TrailerMovements)
+            {
+                <tr>
+                    <td>@movement.TrailerId</td>
+                    <td>@movement.NewLocation</td>
+                    <td>@movement.Priority</td>
+                    <td>@movement.Complete</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
